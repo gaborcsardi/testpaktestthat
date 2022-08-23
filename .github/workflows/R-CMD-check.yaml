@@ -39,6 +39,9 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
+      - name: Add rtools40 to the PATH
+        run: echo "C:\rtools40\ucrt64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
       - name: check gcc version
         run: |
           print(Sys.which("gcc"))
