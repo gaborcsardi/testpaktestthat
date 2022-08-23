@@ -46,6 +46,18 @@ jobs:
           print(Sys.getenv("PATH"))
         shell: Rscript {0}
 
+      - name: without pak
+        run: |
+          install.packages("remotes")
+          remotes::install_github("r-lib/testthat")
+        shell: Rscript {0}
+
+      - name: with pak
+        run: |
+          install.packages("pak")
+          pak::pkg_install("r-lib/testthat?reinstall")
+        shell: Rscript {0}
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
