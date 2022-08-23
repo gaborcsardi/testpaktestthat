@@ -38,7 +38,13 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-          rtools-version: '42'
+
+      - name: check gcc version
+        run: |
+          print(Sys.which("gcc"))
+          print(system("where.exe gcc"))
+          print(Sys.getenv("PATH"))
+        shell: Rscript {0}
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
